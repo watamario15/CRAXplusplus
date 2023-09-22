@@ -64,7 +64,7 @@ add_plugin("Vmi")
 pluginsConfig.Vmi = {
     baseDirs = {
         os.getenv("HOME") .. "/s2e/projects/sym_socket",
-        os.getenv("HOME") .. "/s2e/images/debian-9.2.1-x86_64/guestfs",
+        __GUESTFS__,
     },
 }
 

@@ -170,10 +170,10 @@ function target_tools {
 
 }
 
-S2ECMD=./s2ecmd
-S2EGET=./s2eget
-S2EPUT=./s2eput
-COMMON_TOOLS="s2ecmd s2eget s2eput"
+S2ECMD="./s2ecmd"
+S2EGET="./s2ecmd get"
+S2EPUT="./s2ecmd put"
+COMMON_TOOLS="s2ecmd"
 
 ###############################################################################
 
@@ -223,6 +223,7 @@ TARGET_PATH='./sym_arg'
 
 
 prepare_target "${TARGET_PATH}"
+prepare_target "./target"
 
 
 

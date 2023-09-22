@@ -40,7 +40,7 @@ public:
                         const klee::StateSet &addedStates,
                         const klee::StateSet &removedStates) override;
 
-    virtual bool empty() override { return m_outputStates.empty(); }
+    virtual bool empty() override { return m_stateQueue.empty(); }
 
     virtual void printName(llvm::raw_ostream &os) override {
         os << "IOStates searcher\n";

@@ -25,6 +25,7 @@
 
 #include <atomic>
 #include <map>
+#include <mutex>
 #include <shared_mutex>
 #include <string>
 #include <string_view>
