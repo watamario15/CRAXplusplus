@@ -98,7 +98,7 @@ std::string toByteString(InputIt first, InputIt last) {
         ret += '\'';
     }
 
-    return ret;
+    return '(' + ret + ')';
 }
 
 template <typename T>

@@ -49,7 +49,7 @@ pluginsConfig.BaseInstructions = {
 add_plugin("HostFiles")
 pluginsConfig.HostFiles = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_file",
+        __PROJ_DIR__,
     },
     allowWrite = true,
 }
@@ -63,8 +63,8 @@ pluginsConfig.HostFiles = {
 add_plugin("Vmi")
 pluginsConfig.Vmi = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_file",
-        __GUESTFS__,
+        __PROJ_DIR__,
+        __PROJ_DIR__ .. "/guestfs",
     },
 }
 
@@ -407,12 +407,11 @@ pluginsConfig.CRAX = {
     -- The exploitaion techniques that your exploit will use
     techniques = {
         "Ret2stack",
+        --"Ret2syscall",
         --"Ret2csu",
         --"BasicStackPivoting",
         --"AdvancedStackPivoting",
-        --"Ret2syscall",
         --"GotLeakLibc",
-        --"OneGadget"
-        --"Ret2syscall"
+        --"OneGadget",
     },
 }

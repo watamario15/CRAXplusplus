@@ -49,7 +49,7 @@ pluginsConfig.BaseInstructions = {
 add_plugin("HostFiles")
 pluginsConfig.HostFiles = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_socket",
+        __PROJ_DIR__,
     },
     allowWrite = true,
 }
@@ -63,8 +63,8 @@ pluginsConfig.HostFiles = {
 add_plugin("Vmi")
 pluginsConfig.Vmi = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_socket",
-        __GUESTFS__,
+        __PROJ_DIR__,
+        __PROJ_DIR__ .. "/guestfs",
     },
 }
 

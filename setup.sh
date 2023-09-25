@@ -21,17 +21,8 @@ function check_dir_exists() {
     fi
 }
 
-function install_crax_config_for_project() {
-    # $1: project name (e.g. sym_stdin)
-    ln -sfv "$CRAX_ROOT"/proxies/"$1"/s2e-config.template.lua \
-            "$S2E_ROOT"/projects/"$1"/s2e-config.template.lua
-}
-
 function install_crax_scripts_for_project() {
     # $1: project name (e.g. sym_stdin)
-    ln -sfv "$CRAX_ROOT"/proxies/"$1"/bootstrap.sh \
-            "$S2E_ROOT"/projects/"$1"/bootstrap.sh
-
     ln -sfv "$CRAX_ROOT"/scripts/launch-crax.sh \
             "$S2E_ROOT"/projects/"$1"/launch-crax.sh
 
@@ -51,8 +42,7 @@ function install_libc_and_ld_for_project() {
 function prepare_proxy() {
     # $1: project name (e.g. sym_stdin)
     if [ -d "$S2E_ROOT"/projects/$1 ]; then
-        echo -e "[*] Installing config and scripts for $1..."
-        install_crax_config_for_project "$1"
+        echo -e "[*] Installing scripts and libraries for $1..."
         install_crax_scripts_for_project "$1"
         install_libc_and_ld_for_project "$1"
     else
@@ -73,9 +63,9 @@ check_dir_exists "$S2E_SRC" "Please build S2E first"
 echo -e '[*] Copying and applying patches to s2e source tree...'
 cp "$CRAX_ROOT"/patches/*.patch "$S2E_SRC"
 cd "$S2E_SRC" && {
-    git apply *.patch >/dev/null 2>&1
+    git apply *.patch
     if [ $? -ne 0 ]; then
-        echo -e "${YELLOW}[!] Warning: failed to apply patch. You may ignore this message.${RESET}"
+        echo -e "${YELLOW}[!] Warning: Failed to apply patches. You must apply them manually.${RESET}"
     fi
 }
 

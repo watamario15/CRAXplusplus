@@ -49,7 +49,7 @@ pluginsConfig.BaseInstructions = {
 add_plugin("HostFiles")
 pluginsConfig.HostFiles = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_stdin",
+        __PROJ_DIR__,
     },
     allowWrite = true,
 }
@@ -63,8 +63,8 @@ pluginsConfig.HostFiles = {
 add_plugin("Vmi")
 pluginsConfig.Vmi = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_stdin",
-        os.getenv("HOME") .. "/s2e/images/debian-9.2.1-x86_64/guestfs",
+        __PROJ_DIR__,
+        __PROJ_DIR__ .. "/guestfs",
     },
 }
 
@@ -389,8 +389,8 @@ pluginsConfig.CRAX = {
 
     -- Modules of CRAX++ that you wish to load.
     modules = {
-        "DynamicRop",
         "IOStates",
+        "DynamicRop",
     },
 
     -- Module config

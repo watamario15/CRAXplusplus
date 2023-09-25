@@ -20,7 +20,7 @@ function generate_s2e_config() {
     sed -e "s/__CANARY__/$CANARY/g" \
         -e "s/__ELF_BASE__/$ELF_BASE/g" \
         -e "s/__STATE_INFO_LIST__/$STATE_INFO_LIST/g" \
-        -e "s%__GUESTFS__%$(cat project.json | jq '.guestfs_paths[0]')%g" \
+        -e "s%__PROJ_DIR__%\"$(cd "$(dirname "$0")"; pwd)\"%g" \
         s2e-config.template.lua > s2e-config.lua
 }
 
