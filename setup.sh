@@ -28,6 +28,9 @@ function install_crax_scripts_for_project() {
 
     ln -sfv "$CRAX_ROOT"/scripts/set-target.sh \
             "$S2E_ROOT"/projects/"$1"/set-target.sh
+
+    ln -sfv "$CRAX_ROOT"/scripts/test-exploitability.sh \
+            "$S2E_ROOT"/projects/"$1"/test-exploitability.sh
 }
 
 function install_libc_and_ld_for_project() {
