@@ -221,7 +221,7 @@ TARGET_PATH='./sym_file'
 
 
 prepare_target "${TARGET_PATH}"
-prepare_target "./target"
+prepare_target target
 
 
 

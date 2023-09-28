@@ -226,7 +226,7 @@ TARGET_PATH='./sym_stdin'
 
 
 prepare_target "${TARGET_PATH}"
-prepare_target "./target"
+prepare_target target
 
 
 

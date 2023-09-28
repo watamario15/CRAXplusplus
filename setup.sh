@@ -75,7 +75,7 @@ S2E_CRAX_SRC="$S2E_SRC"/libs2eplugins/src/s2e/Plugins/CRAX
 if [ -e "$S2E_CRAX_SRC" ]; then
     rm -rf "$S2E_CRAX_SRC"
 fi
-cp -ar "$CRAX_SRC" "$S2E_SRC"/libs2eplugins/src/s2e/Plugins/CRAX
+ln -sfv "$CRAX_SRC" "$S2E_SRC"/libs2eplugins/src/s2e/Plugins/CRAX
 
 
 prepare_proxy sym_arg

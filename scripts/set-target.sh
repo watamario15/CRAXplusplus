@@ -33,13 +33,23 @@ function usage() {
 function create_symlinks() {
     # $1: directory name (either examples or examples-staging)
     # $2: target binary name (e.g., unexploitable)
+
+    rm -rf s2e-*
+    rm -f bootstrap.sh poc target serial.txt exploit* stage*
+
     ln -sfv "$CRAX_ROOT/$1/$2/$2" "target"
     ln -sfv "$CRAX_ROOT/$1/$2/poc" "poc"
-    ln -sfv "$CRAX_ROOT/$1/$2/s2e-config.template.lua" "s2e-config.template.lua"
+
+    if [ -e "$CRAX_ROOT/$1/$2/s2e-config.template.lua" ]; then
+        ln -sfv "$CRAX_ROOT/$1/$2/s2e-config.template.lua" "s2e-config.template.lua"
+    else
+        cp "$CRAX_ROOT"/proxies/"$(current_dir)"/s2e-config.template.lua "s2e-config.template.lua"
+    fi
+
     if [ -e "$CRAX_ROOT/$1/$2/bootstrap.sh" ]; then
         ln -sfv "$CRAX_ROOT/$1/$2/bootstrap.sh" "bootstrap.sh"
     else
-        ln -sfv "$CRAX_ROOT"/proxies/"$(current_dir)"/bootstrap.sh "bootstrap.sh"
+        cp "$CRAX_ROOT"/proxies/"$(current_dir)"/bootstrap.sh "bootstrap.sh"
     fi
 }
 

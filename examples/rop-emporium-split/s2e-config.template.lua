@@ -49,7 +49,7 @@ pluginsConfig.BaseInstructions = {
 add_plugin("HostFiles")
 pluginsConfig.HostFiles = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_stdin",
+        ".",
     },
     allowWrite = true,
 }
@@ -63,8 +63,8 @@ pluginsConfig.HostFiles = {
 add_plugin("Vmi")
 pluginsConfig.Vmi = {
     baseDirs = {
-        os.getenv("HOME") .. "/s2e/projects/sym_stdin",
-        os.getenv("HOME") .. "/s2e/images/debian-9.2.1-x86_64/guestfs",
+        ".",
+        "./guestfs",
     },
 }
 
@@ -369,34 +369,29 @@ end
 add_plugin("CRAX")
 
 pluginsConfig.CRAX = {
-    -- The filenames to the ELF and libc.so.6.
-    -- The static analysis of binary programs is currently
-    -- carried out in the host (instead of in the guest).
+    -- Core Settings
+    showInstructions = false,
+    showSyscalls = true,
+    concolicMode = true,
+
+    -- Filenames
     elfFilename = "./target",
     libcFilename = "./libc-2.24.so",
     ldFilename = "./ld-2.24.so",
 
-    -- Verbosity.
-    showInstructions = false,
-    showSyscalls = true,
-
-    -- Disable forking except those performed by CRAXplusplus.
-    disableNativeForking = true,
-
-    -- User-specified value (used at exploitation time).
-    canary = __CANARY__,
-    elfBase = __ELF_BASE__,
-
     -- Modules of CRAX++ that you wish to load.
     modules = {
-        "DynamicRop",
         "IOStates",
+        "DynamicRop",
         --"SymbolicAddressMap",
     },
 
     -- Module config
     modulesConfig = {
+        -- Used for stage2 concolic execution
         IOStates = {
+            canary = __CANARY__,
+            elfBase = __ELF_BASE__,
             stateInfoList = __STATE_INFO_LIST__,
         },
     },
